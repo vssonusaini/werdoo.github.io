@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main {
+        width: 100%;
+      }
+
+      .servo {
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="servo">
+        <input type="range" id="servoA" />
+        <input type="range" id="servoB" />
+      </div>
+
+      <br />
+      <hr />
+      <br />
+
+      <div class="recoder" id="recoder">
+        <input type="range" id="recoderA" />
+        <input type="range" id="recoderB" />
+      </div>
+
+      <br />
+      <hr />
+      <div id="dis"></div>
+      <br />
+
+      <div class="btn">
+        <button id="recodeBTN">Recode</button>
+        <button id="PlayBTN">Play</button>
+      </div>
+    </div>
+
+    <script>
+      var servoA = document.getElementById("servoA");
+      var servoB = document.getElementById("servoB");
+      var recoderA = document.getElementById("recoderA");
+      var recoderB = document.getElementById("recoderB");
+      var recodeBTN = document.getElementById("recodeBTN");
+      var PlayBTN = document.getElementById("PlayBTN");
+      var dis = document.getElementById("dis");
+      var recoder = document.getElementById("recoder");
+
+      recoderA.value = 0;
+      recoderB.value = 0;
+
+      var store = [{ RA: 0, RB: 0 }];
+
+      //   copy data
+      const Copy_ = () => {
+        servoA.value = recoderA.value;
+        servoB.value = recoderB.value;
+        dis.innerHTML = recoderA.value + " RA   - " + recoderB.value + " RB";
+        window.requestAnimationFrame(Copy_);
+      };
+      window.requestAnimationFrame(Copy_);
+
+      //   recode data in database
+      const recode_ = () => {
+        var puchData = { RA: recoderA.value, RB: recoderB.value };
+        store.push(puchData);
+        console.log(store);
+      };
+
+      //   play on copy data
+      const play_ = () => {
+        recoder.style.display = "none";
+        var RAcount = 0;
+        var RBcount = 0;
+        var storeloopcount = 1;
+        var RAvalue = 0;
+        var RBvalue = 0;
+        recoderA.value = 0;
+        recoderB.value = 0;
+
+        const storeloop = () => {
+          RAvalue = store[storeloopcount].RA;
+          RBvalue = store[storeloopcount].RB;
+          storeloopcount++;
+          if (storeloopcount < store.length) {
+            storeloop();
+          }
+        };
+        storeloop();
+
+        const RA = () => {
+          setTimeout(() => {
+            recoderA.value = RAcount;
+            console.log("RAcount :", RAcount);
+            RAcount++;
+            if (RAcount < RAvalue) {
+              RA();
+            }
+          }, 40);
+        };
+        RA();
+        const RB = () => {
+          setTimeout(() => {
+            recoderB.value = RBcount;
+            console.log("RBcount :", RBcount);
+            RBcount++;
+            if (RBcount < RBvalue) {
+              RB();
+            }
+          }, 40);
+        };
+        RB();
+      };
+
+      //   call with button
+      recodeBTN.addEventListener("click", recode_);
+      PlayBTN.addEventListener("click", play_);
+    </script>
+  </body>
+</html>
