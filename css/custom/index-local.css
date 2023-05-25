@@ -1,32 +1,4 @@
-/*
-*
-* Template Name: Stomp - Typographic Intro
-* Concept: Template Landing Page / Coming Soon
-* Files Associated: index-local.html, index-local-countdown.html
-* Date Modified: 2017-06-29
-* Description: Custom Styles associated with the demos
-* Authors: Sven Creations(svencreations@gmail.com)
-*
-*/
 
-/* ==================================================================
-* Table of Contents:
-*
-* 1.0 - Custom Font Declarations(if any)
-* 2.0 - Custom Styles
-*       2.1 - Font Style Declarations and Other Fixes
-*       2.2 - Font Colors and Backgrounds
-* 3.0 - Responsive Styles
-* 		3.1 - Small Devices, Tablets (â‰¥768px)
-* 		3.2 - Medium Devices, Desktops (â‰¥992px)
-* 		3.3 - Large Devices, Desktops (â‰¥1200px)
-*       3.4 - Wide Screens, Desktops (â‰¥1824px)
-
-================================================================== */
-
-/* ==================================================================
-1.0 Custom Font Declarations(if any)
-================================================================== */
 
 @font-face {
     font-family: 'TeXGyreHeros';
@@ -196,7 +168,7 @@ Paragraph - #888, Contrast / Highlight(Buttons BG) - #EF0D33
 
 #intro-content::before,
 .splash-page::before {
-    background-image: url("../../images/String_Mix_12pcs_540x.webp");
+    background-image: url("../../images/local/main-bg.jpg");
 }
 
 .tf-logo {
