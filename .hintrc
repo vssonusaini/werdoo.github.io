@@ -9,6 +9,8 @@
         "label": "off"
       }
     ],
-    "button-type": "off"
+    "button-type": "off",
+    "meta-viewport": "off",
+    "highest-available-document-mode": "off"
   }
 }
